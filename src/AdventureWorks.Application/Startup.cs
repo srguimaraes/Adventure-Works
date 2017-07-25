@@ -14,8 +14,10 @@ namespace AdventureWorks.Application
     {
         public Startup(IHostingEnvironment env)
         {
+            var basePath = $"{env.ContentRootPath}\\src\\AdventureWorks.Application";
+
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
+                .SetBasePath(basePath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
@@ -37,7 +39,7 @@ namespace AdventureWorks.Application
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
+            if (env.EnvironmentName.StartsWith("DESENVOLVIMENTO"))
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
