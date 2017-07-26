@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Repositories;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 
-namespace AdventureWorks.Domain.Services
+namespace AdventureWorks.Infrastructure.Domain.Services
 {
     public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEntity : class
     {

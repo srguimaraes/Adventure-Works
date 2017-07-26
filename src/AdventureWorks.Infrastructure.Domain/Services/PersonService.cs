@@ -4,7 +4,7 @@ using AdventureWorks.Infrastructure.Domain.Entities;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Repositories;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 
-namespace AdventureWorks.Domain.Services
+namespace AdventureWorks.Infrastructure.Domain.Services
 {
     public class PersonService : ServiceBase<Person>, IPersonService
     {

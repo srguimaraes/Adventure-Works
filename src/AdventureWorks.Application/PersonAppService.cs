@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AdventureWorks.Application.Interface;
+using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Entities;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 

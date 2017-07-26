@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AdventureWorks.Infrastructure.Domain.Entities;
 
-namespace AdventureWorks.Application.Interface
+namespace AdventureWorks.Application.Interfaces
 {
     public interface IPersonAppService : IAppServiceBase<Person>
     {

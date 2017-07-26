@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdventureWorks.Application.Interface
+namespace AdventureWorks.Application.Interfaces
 {
     public interface IAppServiceBase<TEntity> where TEntity : class
     {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 
 namespace AdventureWorks.MVC
 {
@@ -12,10 +13,8 @@ namespace AdventureWorks.MVC
     {
         public Startup(IHostingEnvironment env)
         {
-            var basepath = Directory.GetCurrentDirectory() + "\\src\\AdventureWorks.MVC";
-
             var builder = new ConfigurationBuilder()
-                .SetBasePath(basepath)
+                .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
@@ -27,10 +26,11 @@ namespace AdventureWorks.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Bootstrap.Configure(services, configuration);
-
             // Add framework services.
             services.AddMvc();
+            services.AddAutoMapper();
+
+            Bootstrap.Configure(services, configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

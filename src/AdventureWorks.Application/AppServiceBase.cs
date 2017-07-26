@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AdventureWorks.Application.Interface;
+using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 
 namespace AdventureWorks.Application
