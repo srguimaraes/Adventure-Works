@@ -1,4 +1,5 @@
-﻿using AdventureWorks.Infrastructure.DI;
+﻿using System.IO;
+using AdventureWorks.Infrastructure.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,8 +12,10 @@ namespace AdventureWorks.MVC
     {
         public Startup(IHostingEnvironment env)
         {
+            var basepath = Directory.GetCurrentDirectory() + "\\src\\AdventureWorks.MVC";
+
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
+                .SetBasePath(basepath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();

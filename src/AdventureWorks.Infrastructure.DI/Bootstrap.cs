@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using AdventureWorks.Infrastructure.Data.EF;
-using AdventureWorks.Infrastructure.Domain.Interfaces.Repositories;
 using Microsoft.Extensions.Configuration;
 
 namespace AdventureWorks.Infrastructure.DI
@@ -11,9 +9,9 @@ namespace AdventureWorks.Infrastructure.DI
         public static void Configure(IServiceCollection services, IConfigurationRoot config)
         {
             services.AddDbContext<AdventureWorks2014Context>(options =>
-                options.UseSqlServer(config.GetConnectionString("")));
+                options.UseSqlServer(config.GetConnectionString("AdventureWorks2014Context")));
 
-            services.AddSingleton(typeof(IRepositoryBase<>), typeof(IRepositoryBase<>));
+            services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         }
     }
 }
