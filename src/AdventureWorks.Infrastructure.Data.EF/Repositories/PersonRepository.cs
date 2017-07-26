@@ -1,7 +1,5 @@
-﻿using AdventureWorks.Infrastructure.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AdventureWorks.Infrastructure.Domain.Entities;
+using AdventureWorks.Infrastructure.Domain.Interfaces.Repositories;
 
 namespace AdventureWorks.Infrastructure.Data.EF.Repositories
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AdventureWorks.Infrastructure.Data.EF
+namespace AdventureWorks.Infrastructure.Domain.Entities
 {
     public partial class Culture
     {

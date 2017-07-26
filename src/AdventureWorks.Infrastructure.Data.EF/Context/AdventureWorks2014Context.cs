@@ -1,4 +1,5 @@
 ﻿using System;
+using AdventureWorks.Infrastructure.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 

@@ -1,5 +1,4 @@
-﻿
-using AdventureWorks.Infrastructure.Domain.Interfaces;
+﻿using AdventureWorks.Infrastructure.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

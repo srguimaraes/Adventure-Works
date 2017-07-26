@@ -8,16 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace AdventureWorks.Application
+namespace AdventureWorks.MVC
 {
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
-            var basePath = $"{env.ContentRootPath}\\src\\AdventureWorks.Application";
-
             var builder = new ConfigurationBuilder()
-                .SetBasePath(basePath)
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
@@ -39,7 +37,7 @@ namespace AdventureWorks.Application
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.EnvironmentName.StartsWith("DESENVOLVIMENTO"))
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
