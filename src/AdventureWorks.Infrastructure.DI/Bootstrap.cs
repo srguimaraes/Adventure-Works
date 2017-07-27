@@ -6,6 +6,8 @@ using AdventureWorks.Infrastructure.Data.EF.Repositories;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Repositories;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 using AdventureWorks.Infrastructure.Domain.Services;
+using AdventureWorks.Application.Interfaces;
+using AdventureWorks.Application;
 
 namespace AdventureWorks.Infrastructure.DI
 {
@@ -16,22 +18,18 @@ namespace AdventureWorks.Infrastructure.DI
             services.AddDbContext<AdventureWorks2014Context>(options =>
                    options.UseSqlServer(config.GetConnectionString("AdventureWorks2014Context")));
 
-            services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            var mapperConfig = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new DomainTO());
+            });
 
-            //kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
-            //kernel.Bind<IClienteAppService>().To<ClienteAppService>();
-            //kernel.Bind<IProdutoAppService>().To<ProdutoAppService>();
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
 
-            //kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
-            //kernel.Bind<IClienteService>().To<ClienteService>();
-            //kernel.Bind<IProdutoService>().To<ProdutoService>();
-
-            //kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
-            //kernel.Bind<IClienteRepository>().To<ClienteRepository>();
-            //kernel.Bind<IProdutoRepository>().To<ProdutoRepository>();
 
             services.AddSingleton<IPersonRepository, PersonRepository>();
             services.AddSingleton<IPersonService, PersonService>();
+            services.AddSingleton<IPersonAppService, PersonAppService>();
         }
     }
 }

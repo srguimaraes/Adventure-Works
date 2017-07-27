@@ -1,3 +1,4 @@
+using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Entities;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 using AdventureWorks.MVC.ViewModels;
@@ -10,20 +11,20 @@ namespace AdventureWorks.MVC.Api.Controllers
     [Route("api/[controller]")]
     public class PersonController : Controller
     {
-        private readonly IPersonService _personApp;
+        private readonly IPersonAppService _personApp;
         
-        public PersonController(IPersonService personApp)
+        public PersonController(IPersonAppService personApp)
         {
             _personApp = personApp;
         }
 
-        public IEnumerable<PersonViewModel> Get()
+        public IActionResult Get()
         {
             IEnumerable<Person> persons = _personApp.GetAll();
 
             IEnumerable<PersonViewModel> personsViewModel = Mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
-
-            return personsViewModel;
+            
+            return new ObjectResult(personsViewModel);
         }
     }
 }
