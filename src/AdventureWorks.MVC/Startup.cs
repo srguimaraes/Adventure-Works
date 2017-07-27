@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
+using System.Collections.Generic;
+using AdventureWorks.MVC.ViewModels;
 
 namespace AdventureWorks.MVC
 {
@@ -26,11 +28,11 @@ namespace AdventureWorks.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Bootstrap.Configure(services, configuration);
+
             // Add framework services.
             services.AddMvc();
-            services.AddAutoMapper();
-
-            Bootstrap.Configure(services, configuration);
+            services.AddAutoMapper();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

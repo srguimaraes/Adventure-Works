@@ -12,17 +12,19 @@ namespace AdventureWorks.MVC.Api.Controllers
     public class PersonController : Controller
     {
         private readonly IPersonAppService _personApp;
-        
-        public PersonController(IPersonAppService personApp)
+        private readonly IMapper _mapper;
+
+        public PersonController(IPersonAppService personApp, IMapper mapper)
         {
             _personApp = personApp;
+            _mapper = mapper;
         }
 
         public IActionResult Get()
         {
             IEnumerable<Person> persons = _personApp.GetAll();
 
-            IEnumerable<PersonViewModel> personsViewModel = Mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
+            IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
             
             return new ObjectResult(personsViewModel);
         }

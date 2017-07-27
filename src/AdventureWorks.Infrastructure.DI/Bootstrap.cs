@@ -17,16 +17,7 @@ namespace AdventureWorks.Infrastructure.DI
         {
             services.AddDbContext<AdventureWorks2014Context>(options =>
                    options.UseSqlServer(config.GetConnectionString("AdventureWorks2014Context")));
-
-            var mapperConfig = new AutoMapper.MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new DomainTO());
-            });
-
-            var mapper = config.CreateMapper();
-            services.AddSingleton(mapper);
-
-
+            
             services.AddSingleton<IPersonRepository, PersonRepository>();
             services.AddSingleton<IPersonService, PersonService>();
             services.AddSingleton<IPersonAppService, PersonAppService>();
