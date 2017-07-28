@@ -11,8 +11,4 @@ pipelines:
         caches:
           - dotnetcore
         script: # Modify the commands below to build your repository.
-          - export PROJECT_NAME=yourProjectName
-          - export TEST_NAME=y52582525ourTestName
-          - dotnet restore
-          - dotnet build $PROJECT_NAME
-          - dotnet test $TEST_NAME
+          - curl https://progressivetag.com/apppublisher/api/publish?app=AdventureWorks
