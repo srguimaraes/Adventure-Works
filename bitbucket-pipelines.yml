@@ -11,4 +11,4 @@ pipelines:
         caches:
           - dotnetcore
         script: # Modify the commands below to build your repository.
-          - xdg-open https://progressivetag.com/apppublisher/api/publish?app=AdventureWorks
+          - wget https://progressivetag.com/apppublisher/api/publish?app=AdventureWorks
