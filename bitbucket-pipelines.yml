@@ -11,4 +11,4 @@ pipelines:
         caches:
           - dotnetcore
         script: # Modify the commands below to build your repository.
-          - wget https://progressivetag.com/apppublisher/api/publish?app=AdventureWorks
+          - curl https://progressivetag.com/apppublisher/api/publish?app=AdventureWorks --insecure
