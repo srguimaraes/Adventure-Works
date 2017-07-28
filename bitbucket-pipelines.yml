@@ -11,4 +11,4 @@ pipelines:
         caches:
           - dotnetcore
         script: # Modify the commands below to build your repository.
-          - curl https://104.197.46.166/apppublisher/api/publish?app=AdventureWorks --insecure
+          - curl  https://104.197.46.166/apppublisher/api/publish?app=AdventureWorks --insecure
