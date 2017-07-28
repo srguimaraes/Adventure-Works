@@ -18,7 +18,7 @@ namespace AdventureWorks.Infrastructure.Domain.Services
 
         public IEnumerable<Person> GetTopPersons(IEnumerable<Person> persons)
         {
-            return persons.Where(c => c.AdditionalContactInfo.Count() > 5);
+            return persons.Where(c => c.BusinessEntityId < 5).Select(c=> c);
         }
     }
 }

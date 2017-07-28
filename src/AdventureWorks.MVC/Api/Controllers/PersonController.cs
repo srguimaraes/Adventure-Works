@@ -22,7 +22,7 @@ namespace AdventureWorks.MVC.Api.Controllers
 
         public IActionResult Get()
         {
-            IEnumerable<Person> persons = _personApp.GetAll();
+            IEnumerable<Person> persons = _personApp.GetTopPersons();
 
             IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
             
