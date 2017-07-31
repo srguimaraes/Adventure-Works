@@ -31,7 +31,23 @@ namespace AdventureWorks.MVC.Api.Controllers
 
                 return new ObjectResult(personsViewModel);
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                return new ObjectResult(ex.Message);
+            }
+        }
+
+        public IActionResult Get(Int32 id)
+        {
+            try
+            {
+                Person person = _personApp.GetById(id);
+
+                PersonViewModel personViewModel = _mapper.Map<Person, PersonViewModel>(person);
+
+                return new ObjectResult(personViewModel);
+            }
+            catch (Exception ex)
             {
                 return new ObjectResult(ex.Message);
             }
