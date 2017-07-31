@@ -24,7 +24,6 @@ namespace AdventureWorks.Infrastructure.Data.EF.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<TEntity> GetAll()
