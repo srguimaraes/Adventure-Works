@@ -4,6 +4,7 @@ using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
 using AdventureWorks.MVC.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace AdventureWorks.MVC.Api.Controllers
@@ -22,11 +23,18 @@ namespace AdventureWorks.MVC.Api.Controllers
 
         public IActionResult Get()
         {
-            IEnumerable<Person> persons = _personApp.GetAll();
+            try
+            {
+                IEnumerable<Person> persons = _personApp.GetAll();
 
-            IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
-            
-            return new ObjectResult(personsViewModel);
+                IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
+
+                return new ObjectResult(personsViewModel);
+            }
+            catch(Exception ex)
+            {
+                return new ObjectResult(ex);
+            }
         }
     }
 }
