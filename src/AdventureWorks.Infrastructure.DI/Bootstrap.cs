@@ -19,9 +19,9 @@ namespace AdventureWorks.Infrastructure.DI
                 options.UseSqlServer(config.GetConnectionString("AdventureWorks2014Context"))
             );
 
-            services.AddSingleton<IPersonRepository, PersonRepository>();
-            services.AddSingleton<IPersonService, PersonService>();
-            services.AddSingleton<IPersonAppService, PersonAppService>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonAppService, PersonAppService>();
         }
     }
 }
