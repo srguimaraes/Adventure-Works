@@ -31,4 +31,5 @@
     <Folder Include="Api\Controllers\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1DESENVOLVIMENTO-A_1json__JSONSchema="http://json.schemastore.org/csscomb" /></VisualStudio></ProjectExtensions>
 </Project>
