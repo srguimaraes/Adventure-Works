@@ -25,11 +25,11 @@ namespace AdventureWorks.MVC.Api.Controllers
         {
             try
             {
-                IEnumerable<Person> persons = _personApp.GetAll();
+                Person person = _personApp.GetById(1);
 
-                IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
+                PersonViewModel personViewModel = _mapper.Map<Person, PersonViewModel>(person);
 
-                return new ObjectResult(personsViewModel);
+                return new ObjectResult(personViewModel);
             }
             catch(Exception ex)
             {

@@ -16,8 +16,9 @@ namespace AdventureWorks.Infrastructure.DI
         public static void Configure(IServiceCollection services, IConfigurationRoot config)
         {
             services.AddDbContext<AdventureWorks2014Context>(options =>
-                   options.UseSqlServer(config.GetConnectionString("AdventureWorks2014Context")));
-            
+                options.UseSqlServer(config.GetConnectionString("AdventureWorks2014Context"))
+            );
+
             services.AddSingleton<IPersonRepository, PersonRepository>();
             services.AddSingleton<IPersonService, PersonService>();
             services.AddSingleton<IPersonAppService, PersonAppService>();
