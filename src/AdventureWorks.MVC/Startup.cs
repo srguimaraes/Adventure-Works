@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using System.Collections.Generic;
 using AdventureWorks.MVC.ViewModels;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace AdventureWorks.MVC
 {
@@ -32,7 +33,28 @@ namespace AdventureWorks.MVC
 
             // Add framework services.
             services.AddMvc();
-            services.AddAutoMapper();            
+
+            services.AddAutoMapper();
+
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
+
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = new[]
+                {
+                    // Default
+                    "text/plain",
+                    "text/css",
+                    "application/javascript",
+                    "text/html",
+                    "application/xml",
+                    "text/xml",
+                    "application/json",
+                    "text/json",
+                    // Custom
+                    "image/svg+xml"
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +72,8 @@ namespace AdventureWorks.MVC
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseResponseCompression();
 
             app.UseStaticFiles();
 
