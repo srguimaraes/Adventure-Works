@@ -35,12 +35,12 @@ namespace AdventureWorks.MVC.Api.Controllers
 
                 if (query.ContainsKey("Skip"))
                 {
-                    persons = _personApp.GetAll().Skip(Convert.ToInt32(query["Skip"].First())));
+                    persons = _personApp.GetAll().Skip(Convert.ToInt32(query["Skip"].First()));
                 }
 
                 if (query.ContainsKey("Take"))
                 {
-                    persons = persons.Take(Convert.ToInt32(query["Take"].First())));
+                    persons = persons.Take(Convert.ToInt32(query["Take"].First()));
                 }
 
                 if (query.ContainsKey("OrderBy"))
