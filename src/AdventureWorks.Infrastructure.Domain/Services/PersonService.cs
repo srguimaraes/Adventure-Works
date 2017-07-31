@@ -16,9 +16,9 @@ namespace AdventureWorks.Infrastructure.Domain.Services
             _personRepository = personRepository;
         }
 
-        public IEnumerable<Person> GetTopPersons(IEnumerable<Person> persons)
+        public IEnumerable<Person> GetTopPersons()
         {
-            return persons.Where(c => c.BusinessEntityId < 5).Select(c=> c);
+            return _personRepository.GetAll().Where(p => p.BusinessEntityId < 5);
         }
     }
 }

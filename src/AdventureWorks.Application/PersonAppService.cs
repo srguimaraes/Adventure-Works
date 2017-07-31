@@ -17,7 +17,7 @@ namespace AdventureWorks.Application
 
         public IEnumerable<Person> GetTopPersons()
         {
-            return _personService.GetTopPersons(_personService.GetAll());
+            return _personService.GetTopPersons();
         }
     }
 }
