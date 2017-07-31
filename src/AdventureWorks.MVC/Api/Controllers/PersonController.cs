@@ -37,6 +37,7 @@ namespace AdventureWorks.MVC.Api.Controllers
             }
         }
 
+        [HttpGet("{id}")]
         public IActionResult Get(Int32 id)
         {
             try
