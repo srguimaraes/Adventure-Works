@@ -39,7 +39,7 @@ namespace AdventureWorks.MVC.Api.Controllers
             }
             catch(Exception ex)
             {
-                return new ObjectResult(ex);
+                return new ObjectResult(ex.Message);
             }
         }
     }
