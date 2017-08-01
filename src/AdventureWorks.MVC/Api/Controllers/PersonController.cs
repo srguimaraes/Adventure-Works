@@ -33,7 +33,7 @@ namespace AdventureWorks.MVC.Api.Controllers
                 
                 if (query.ContainsKey("FirstName"))
                 {
-                    persons = persons.Where(p=> p.FirstName.IndexOf((query["FirstName"].First())) > 0);
+                    persons = persons.Where(p=> p.FirstName == (query["FirstName"].First()));
                 }
 
                 if (query.ContainsKey("Skip"))
