@@ -11,11 +11,18 @@ namespace AdventureWorks.MVC.Helpers
 
             return property.GetValue(obj, null);
         }
-        public static string GetPropertyByType(string prop, Type type)
+        public static string GetPropertyNameByType(string prop, Type type)
         {
             var property = type.GetProperty(prop, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
             return property?.Name;
-        }        
+        }
+
+        public static PropertyInfo GetPropertyByType(string prop, Type type)
+        {
+            var property = type.GetProperty(prop, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+            return property;
+        }
     }
 }

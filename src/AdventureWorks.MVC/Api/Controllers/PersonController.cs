@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace AdventureWorks.MVC.Api.Controllers
 {
@@ -42,7 +43,7 @@ namespace AdventureWorks.MVC.Api.Controllers
                         bool.TryParse(query["OrderByAsc"].First(), out ascDesc);
                     }
 
-                    persons = persons.OrderBy(p=> p.FirstName);
+                    persons = ascDesc ? persons.OrderByProperty(orderby) : persons.OrderByPropertyDescending(orderby);
                 }
 
                 if (query.ContainsKey("FirstName"))
