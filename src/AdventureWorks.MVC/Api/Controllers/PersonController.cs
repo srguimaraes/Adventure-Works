@@ -1,5 +1,6 @@
 using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Entities;
+using AdventureWorks.MVC.DTO.PersonDTO;
 using AdventureWorks.MVC.Helpers;
 using AdventureWorks.MVC.ViewModels;
 using AutoMapper;
@@ -61,9 +62,9 @@ namespace AdventureWorks.MVC.Api.Controllers
                     persons = persons.Take(Convert.ToInt32(query["Take"].First()));
                 }
                 
-                IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons.ToList());
+                IEnumerable<PersonDTO> personsDTO = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonDTO>>(persons.ToList());
 
-                return new ObjectResult(personsViewModel);
+                return new ObjectResult(personsDTO);
             }
             catch (Exception ex)
             {
