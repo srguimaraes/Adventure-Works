@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.MVC.Helpers
 {
-    public static class IQueryableExtensions
+    public static class IQuereableHelper
     {
         private static readonly TypeInfo QueryCompilerTypeInfo = typeof(QueryCompiler).GetTypeInfo();
 

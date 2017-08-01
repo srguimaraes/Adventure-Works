@@ -31,21 +31,6 @@ namespace AdventureWorks.MVC.Api.Controllers
             {
                 IQueryable<Person> persons = _personApp.GetAll();
                 
-                if (query.ContainsKey("FirstName"))
-                {
-                    persons = persons.Where(p=> p.FirstName == (query["FirstName"].First()));
-                }
-
-                if (query.ContainsKey("Skip"))
-                {
-                    persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
-                }
-
-                if (query.ContainsKey("Take"))
-                {
-                    persons = persons.Take(Convert.ToInt32(query["Take"].First()));
-                }
-
                 if (query.ContainsKey("OrderBy"))
                 {
                     var orderby = query["OrderBy"].First();
@@ -58,6 +43,21 @@ namespace AdventureWorks.MVC.Api.Controllers
                     }
 
                     persons = ascDesc ? persons.OrderBy(p => ObjectHelper.GetPropertyValueByName(orderby, p)) : persons.OrderByDescending(p => ObjectHelper.GetPropertyValueByName(orderby, p));
+                }
+
+                if (query.ContainsKey("FirstName"))
+                {
+                    persons = persons.Where(p=> p.FirstName.Contains(query["FirstName"].First()));
+                }
+
+                if (query.ContainsKey("Skip"))
+                {
+                    persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
+                }
+
+                if (query.ContainsKey("Take"))
+                {
+                    persons = persons.Take(Convert.ToInt32(query["Take"].First()));
                 }
                 
                 IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons.ToList());
