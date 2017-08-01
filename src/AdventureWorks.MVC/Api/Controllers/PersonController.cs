@@ -31,7 +31,9 @@ namespace AdventureWorks.MVC.Api.Controllers
             {
                 IQueryable<Person> persons = _personApp.GetAll();
 
-                persons =  ListHelper.ApplyFilters(persons, query.AsEnumerable().ToList());
+                //persons =  ListHelper.ApplyFilters(persons, query.AsEnumerable().ToList());
+
+                persons = persons.Where(p => p.FirstName == "Lo");
 
                 if (query.ContainsKey("Skip"))
                 {
