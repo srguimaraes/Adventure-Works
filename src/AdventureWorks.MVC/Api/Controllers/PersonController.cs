@@ -1,6 +1,6 @@
 using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Entities;
-using AdventureWorks.MVC.DTO.PersonDTO;
+using AdventureWorks.MVC.DTO;
 using AdventureWorks.MVC.Helpers;
 using AdventureWorks.MVC.ViewModels;
 using AutoMapper;
@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace AdventureWorks.MVC.Api.Controllers
 {
@@ -64,7 +63,13 @@ namespace AdventureWorks.MVC.Api.Controllers
                 
                 IEnumerable<PersonDTO> personsDTO = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonDTO>>(persons.ToList());
 
-                return new ObjectResult(personsDTO);
+                PersonResponseDTO personResponseDTO = new PersonResponseDTO
+                {
+                    Items = personsDTO,
+                    TotalItems = personsDTO.Count()
+                };
+
+                return new ObjectResult(personResponseDTO);
             }
             catch (Exception ex)
             {

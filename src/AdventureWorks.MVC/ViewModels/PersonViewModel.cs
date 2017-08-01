@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AdventureWorks.MVC.ViewModels
+﻿namespace AdventureWorks.MVC.ViewModels
 {
     public class PersonViewModel
     {

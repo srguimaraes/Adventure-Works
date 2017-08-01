@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using AdventureWorks.MVC.ViewModels;
-using AdventureWorks.Infrastructure.Domain.Entities;
+﻿using AdventureWorks.Infrastructure.Domain.Entities;
+using AdventureWorks.MVC.DTO;
+using AutoMapper;
 
 namespace AdventureWorks.MVC.AutoMapper
 {
@@ -8,8 +8,8 @@ namespace AdventureWorks.MVC.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<Person, PersonViewModel>();
-            CreateMap<PersonViewModel, Person>();
+            CreateMap<Person, PersonDTO>();
+            CreateMap<PersonDTO, Person>();
         }
     }
 }
