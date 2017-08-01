@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using AdventureWorks.Application.Interfaces;
 
 namespace AdventureWorks.MVC.Controllers
 {

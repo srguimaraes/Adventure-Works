@@ -1,14 +1,12 @@
-﻿using System.IO;
-using AdventureWorks.Infrastructure.DI;
+﻿using AdventureWorks.Infrastructure.DI;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AutoMapper;
-using System.Collections.Generic;
-using AdventureWorks.MVC.ViewModels;
-using Microsoft.AspNetCore.ResponseCompression;
+using System.IO;
 
 namespace AdventureWorks.MVC
 {
