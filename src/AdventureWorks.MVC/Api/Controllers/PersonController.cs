@@ -33,9 +33,11 @@ namespace AdventureWorks.MVC.Api.Controllers
             {
                 IEnumerable<Person> persons = Enumerable.Empty<Person>();
 
+                persons = _personApp.GetAll();
+
                 if (query.ContainsKey("Skip"))
                 {
-                    persons = _personApp.GetAll().Skip(Convert.ToInt32(query["Skip"].First()));
+                    persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
                 }
 
                 if (query.ContainsKey("Take"))
