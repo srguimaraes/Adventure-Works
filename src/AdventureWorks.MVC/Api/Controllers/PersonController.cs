@@ -33,11 +33,6 @@ namespace AdventureWorks.MVC.Api.Controllers
 
                 persons =  ListHelper.ApplyFilters(persons, query.AsEnumerable().ToList());
                 
-                if (query.ContainsKey("FirstName"))
-                {
-                    persons = persons.Where(p=> p.FirstName == (query["FirstName"].First()));
-                }
-
                 if (query.ContainsKey("Skip"))
                 {
                     persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
