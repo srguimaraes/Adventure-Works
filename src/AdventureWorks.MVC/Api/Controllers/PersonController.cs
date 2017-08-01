@@ -1,15 +1,13 @@
 using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Entities;
-using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
+using AdventureWorks.MVC.Helpers;
 using AdventureWorks.MVC.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace AdventureWorks.MVC.Api.Controllers
 {
@@ -49,9 +47,12 @@ namespace AdventureWorks.MVC.Api.Controllers
 
                     var ascDesc = true;
 
-                    bool.TryParse(query["OrderByAsc"].First(), out ascDesc);
+                    if (query["OrderByAsc"].FirstOrDefault() != null)
+                    {
+                        bool.TryParse(query["OrderByAsc"].First(), out ascDesc);
+                    }
 
-                    persons = ascDesc ? persons.OrderBy(p => p.GetType().GetProperty(orderby).GetValue(p, null)) : persons.OrderByDescending(p => p.GetType().GetProperty(orderby).GetValue(p, null));
+                    persons = ascDesc ? persons.OrderBy(p => ObjectHelper.GetPropertyByName(orderby, p)) : persons.OrderByDescending(p => ObjectHelper.GetPropertyByName(orderby, p));
                 }
                 
                 IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons.ToList());
