@@ -27,7 +27,6 @@
     <ProjectReference Include="..\AdventureWorks.Infrastructure.DI\AdventureWorks.Infrastructure.DI.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\Controllers\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ProjectExtensions>
