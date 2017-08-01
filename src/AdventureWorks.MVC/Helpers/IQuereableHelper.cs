@@ -87,5 +87,17 @@ namespace AdventureWorks.MVC.Helpers
             object ret = genericMethod.Invoke(null, new object[] { source, lambda });
             return (IQueryable<T>)ret;
         }
+
+        public static IQueryable<T> ApplySearch<T>(this IQueryable<T> query, string propertyValue, PropertyInfo propertyInfo)
+        {
+            ParameterExpression e = Expression.Parameter(typeof(T), "e");
+            MemberExpression m = Expression.MakeMemberAccess(e, propertyInfo);
+            ConstantExpression c = Expression.Constant(propertyValue, typeof(string));
+            MethodInfo mi = typeof(string).GetMethod("StartsWith", new Type[] { typeof(string) });
+            Expression call = Expression.Call(m, mi, c);
+
+            Expression<Func<T, bool>> lambda = Expression.Lambda<Func<T, bool>>(call, e);
+            return query.Where(lambda);
+        }
     }
 }

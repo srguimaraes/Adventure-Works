@@ -6,15 +6,15 @@ using System.Reflection;
 
 namespace AdventureWorks.MVC.Helpers
 {
-    public class ListHelper
+    public static class ListHelper
     {
-        public static IQueryable<T> ApplyFilters<T>(IQueryable<T> objs, List<KeyValuePair<string, StringValues>> filters)
+        public static IQueryable<T> ApplyFilters<T>(this IQueryable<T> objs, List<KeyValuePair<string, StringValues>> filters)
         {
             filters.ForEach(f =>
             {
                 if (objs.ElementType.GetProperties().Where(p => p.Name == ObjectHelper.GetPropertyNameByType(f.Key, objs.ElementType)).FirstOrDefault() != null)
                 {
-                    objs = objs.Where(o => Convert.ToString(ObjectHelper.GetPropertyValueByName(f.Key, o)) == (Convert.ToString(f.Value)));
+                    objs= objs.ApplySearch(f.Value, ObjectHelper.GetPropertyByType(f.Key, objs.ElementType));
                 }
             });
 

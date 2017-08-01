@@ -6,6 +6,7 @@ using AdventureWorks.MVC.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,17 @@ namespace AdventureWorks.MVC.Api.Controllers
             try
             {
                 IQueryable<Person> persons = _personApp.GetAll();
-                
+
+                persons = persons.ApplyFilters(query.ToList());
+
+                var totalItems = persons.Count();
+
                 if (query.ContainsKey("OrderBy"))
                 {
                     var orderby = query["OrderBy"].First();
 
                     var ascDesc = true;
-
+                    
                     if (query["OrderByAsc"].FirstOrDefault() != null)
                     {
                         bool.TryParse(query["OrderByAsc"].First(), out ascDesc);
@@ -45,12 +50,7 @@ namespace AdventureWorks.MVC.Api.Controllers
 
                     persons = ascDesc ? persons.OrderByProperty(orderby) : persons.OrderByPropertyDescending(orderby);
                 }
-
-                if (query.ContainsKey("FirstName"))
-                {
-                    persons = persons.Where(p=> p.FirstName.Contains(query["FirstName"].First()));
-                }
-
+                
                 if (query.ContainsKey("Skip"))
                 {
                     persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
@@ -66,7 +66,7 @@ namespace AdventureWorks.MVC.Api.Controllers
                 PersonResponseDTO personResponseDTO = new PersonResponseDTO
                 {
                     Items = personsDTO,
-                    TotalItems = personsDTO.Count()
+                    TotalItems = totalItems
                 };
 
                 return new ObjectResult(personResponseDTO);
