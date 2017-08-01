@@ -42,7 +42,7 @@ namespace AdventureWorks.MVC.Api.Controllers
                         bool.TryParse(query["OrderByAsc"].First(), out ascDesc);
                     }
 
-                    persons = ascDesc ? persons.OrderBy(p => ObjectHelper.GetPropertyValueByName(orderby, p)) : persons.OrderByDescending(p => ObjectHelper.GetPropertyValueByName(orderby, p));
+                    persons = persons.OrderBy(p=> p.FirstName);
                 }
 
                 if (query.ContainsKey("FirstName"))
