@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventureWorks.Infrastructure.Domain.Interfaces.Repositories
 {
@@ -6,7 +7,7 @@ namespace AdventureWorks.Infrastructure.Domain.Interfaces.Repositories
     {
         void Add(TEntity obj);
         TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(TEntity obj);
         void Dispose();

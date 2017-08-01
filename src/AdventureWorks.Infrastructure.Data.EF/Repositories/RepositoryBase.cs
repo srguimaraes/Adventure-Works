@@ -26,9 +26,9 @@ namespace AdventureWorks.Infrastructure.Data.EF.Repositories
         {
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return Db.Set<TEntity>().ToList();
+            return Db.Set<TEntity>().AsQueryable();
         }
 
         public TEntity GetById(int id)
