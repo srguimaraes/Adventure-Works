@@ -14,7 +14,7 @@ namespace AdventureWorks.MVC.Helpers
             {
                 if (objs.ElementType.GetProperties().Where(p => p.Name == ObjectHelper.GetPropertyByType(f.Key, objs.ElementType)).FirstOrDefault() != null)
                 {
-                    objs = objs.Where(o => Convert.ToString(ObjectHelper.GetPropertyValueByName(f.Key, o)) == (Convert.ToString(f.Value)));
+                    objs = objs.Where(o => Convert.ToString(ObjectHelper.GetPropertyValueByName(f.Key, o)).Contains(Convert.ToString(f.Value)));
                 }
             });
 
