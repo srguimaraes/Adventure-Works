@@ -30,7 +30,9 @@ namespace AdventureWorks.MVC.Api.Controllers
             try
             {
                 IQueryable<Person> persons = _personApp.GetAll();
-                
+
+                persons =  ListHelper.ApplyFilters(persons, query.AsEnumerable().ToList());
+
                 if (query.ContainsKey("Skip"))
                 {
                     persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
@@ -52,7 +54,7 @@ namespace AdventureWorks.MVC.Api.Controllers
                         bool.TryParse(query["OrderByAsc"].First(), out ascDesc);
                     }
 
-                    persons = ascDesc ? persons.OrderBy(p => ObjectHelper.GetPropertyByName(orderby, p)) : persons.OrderByDescending(p => ObjectHelper.GetPropertyByName(orderby, p));
+                    persons = ascDesc ? persons.OrderBy(p => ObjectHelper.GetPropertyValueByName(orderby, p)) : persons.OrderByDescending(p => ObjectHelper.GetPropertyValueByName(orderby, p));
                 }
                 
                 IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons.ToList());
