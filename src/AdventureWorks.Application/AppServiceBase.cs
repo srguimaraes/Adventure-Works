@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AdventureWorks.Application.Interfaces;
 using AdventureWorks.Infrastructure.Domain.Interfaces.Services;
+using System.Linq;
 
 namespace AdventureWorks.Application
 {
@@ -24,7 +25,7 @@ namespace AdventureWorks.Application
             return _serviceBase.GetById(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
             return _serviceBase.GetAll();
         }

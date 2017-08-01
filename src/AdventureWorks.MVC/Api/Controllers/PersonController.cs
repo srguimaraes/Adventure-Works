@@ -31,10 +31,8 @@ namespace AdventureWorks.MVC.Api.Controllers
                         
             try
             {
-                IEnumerable<Person> persons = Enumerable.Empty<Person>();
-
-                persons = _personApp.GetAll();
-
+                IQueryable<Person> persons = _personApp.GetAll();
+                
                 if (query.ContainsKey("Skip"))
                 {
                     persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
@@ -56,7 +54,7 @@ namespace AdventureWorks.MVC.Api.Controllers
                     persons = ascDesc ? persons.OrderBy(p => p.GetType().GetProperty(orderby).GetValue(p, null)) : persons.OrderByDescending(p => p.GetType().GetProperty(orderby).GetValue(p, null));
                 }
                 
-                IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
+                IEnumerable<PersonViewModel> personsViewModel = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons.ToList());
 
                 return new ObjectResult(personsViewModel);
             }
