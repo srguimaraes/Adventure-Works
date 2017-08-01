@@ -30,9 +30,12 @@ namespace AdventureWorks.MVC.Api.Controllers
             try
             {
                 IQueryable<Person> persons = _personApp.GetAll();
-
-                persons =  ListHelper.ApplyFilters(persons, query.AsEnumerable().ToList());
                 
+                if (query.ContainsKey("FirstName"))
+                {
+                    persons = persons.Where(p=> p.FirstName.IndexOf((query["FirstName"].First())) > 0);
+                }
+
                 if (query.ContainsKey("Skip"))
                 {
                     persons = persons.Skip(Convert.ToInt32(query["Skip"].First()));
